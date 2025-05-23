@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Portfolio | Erika Pazos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #3f72af;
+            --secondary-color: #112d4e;
+            --highlight-color: #f9a826;
+            --light-color: #f9f7f7;
+            --dark-color: #112d4e;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: var(--light-color);
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Navigation Styles */
+        .navbar {
+            background-color: var(--dark-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--highlight-color);
+        }
+        
+        .nav-link.active {
+            color: var(--highlight-color) !important;
+            border-bottom: 2px solid var(--highlight-color);
+        }
+        
+        /* Hero Section Styles */
+        #hero {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 120px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/hero-background.jpg') right bottom no-repeat;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        #hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #hero h1 {
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        #hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Button Styles */
+        .btn-highlight {
+            background-color: var(--highlight-color);
+            border: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 10px 30px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn-highlight:hover {
+            background-color: #e69718;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+         /* Reduced padding for specific sections */
+         #certifications {
+            padding-bottom: 40px; /* Reduced from 80px */
+        }
+        
+        #portfolio {
+            padding-bottom: 40px; /* Reduced from 80px */
+        }
+        
+        .section-title {
+            margin-bottom: 60px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--highlight-color);
+            margin: 15px auto 0;
+        }
+        
+        /* About Section Styles */
+        .about-img {
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Certification Styles */
+        .certification-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certification-card .card-body {
+            padding: 25px;
+        }
+        
+        .certification-card .card-title {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .certification-card .cert-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Portfolio Item Styles - Updated for No Images */
+.portfolio-item {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
+    border-top: 4px solid var(--primary-color);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item-content {
+    padding: 25px;
+}
+
+.portfolio-item-title {
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+/* Add a small accent line under the title */
+.portfolio-item-title:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--highlight-color);
+    margin-top: 10px;
+}
+
+.portfolio-tag {
+    display: inline-block;
+    background-color: rgba(63, 114, 175, 0.1);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Enhance the list items within portfolio cards */
+.portfolio-item ul {
+    padding-left: 1.5rem;
+}
+
+.portfolio-item ul li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.portfolio-item ul li:before {
+    content: "";
+    position: absolute;
+    left: -1.5rem;
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+/* Optional: Add a subtle gradient background to portfolio items */
+.portfolio-item {
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+        
+        /* Skills Section Styles */
+        .skills-section {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .skills-section .section-title h2 {
+            color: white;
+        }
+        
+        .skill-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--highlight-color);
+        }
+        
+        .skill-card h3 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard-preview {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-preview-img {
+            width: 100%;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dashboard-preview-content {
+            padding: 25px;
+        }
+        
+        .dashboard-preview-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Contact Section Styles */
+        .contact-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.03;
+            z-index: -1;
+        }
+        
+        .contact-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            height: 100%;
+        }
+        
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .social-icons {
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--highlight-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Reduced margin for badge button */
+        .badge-button-container {
+            margin-top: 2rem;
+            margin-bottom: 1rem; /* Reduced from default */
+        }
+        
+        /* Dashboard specific styles */
+        .chart-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .chart-card-header {
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .chart-card-title {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .chart-card-body {
+            padding: 20px;
+        }
+        
+        .metric-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+            height: 100%;
+        }
+        
+        .metric-card h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 10px 0;
+        }
+        
+        .metric-card p {
+            color: #777;
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        /* Template Card Styles */
+        .template-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .template-card-img {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .template-card-img i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+        }
+        
+        .template-card-body {
+            padding: 20px;
+        }
+        
+        .template-card-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .template-card-text {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .template-card-footer {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .template-type {
+            background-color: rgba(63, 114, 175, 0.1);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+        
+        /* Power BI Dashboard Styles */
+        .powerbi-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            background-color: white;
+        }
+        
+        .powerbi-header {
+            padding: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .powerbi-header h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .powerbi-body {
+            height: 600px;
+            position: relative;
+        }
+        
+        .powerbi-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #777;
+        }
+        
+        .powerbi-placeholder i {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* Animation styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            #hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .skill-card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            #hero {
+                padding: 100px 0 80px;
+            }
+            
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-img {
+                margin-bottom: 30px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Erika Pazos - PM Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certifications">Certifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Expertise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1>Project Management Excellence</h1>
+                    <p>
+                        I transform complex challenges into successful projects through strategic planning, 
+                        innovative solutions, and data-driven decision making.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#portfolio" class="btn btn-highlight">View My Work</a>
+                        <a href="#contact" class="btn btn-outline-light">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <img src="images/erika-profile.jpg" alt="Erika Pazos" class="img-fluid about-img">
+                </div>
+                <div class="col-lg-7">
+                    <div class="about-text">
+                        <p>
+                            Hello! I'm a seasoned Program Manager with over 20 years of experience leading complex IT initiatives that deliver 
+                            multimillion-dollar value across global enterprises. My career spans the technology, healthcare, and financial sectors, 
+                            where I've consistently driven projects to successful completion.
+                        </p>
+                        <p>
+                            I specialize in managing cross-functional teams, establishing practical project governance frameworks, and implementing 
+                            data-driven tracking systems that provide real-time insights for informed decision-making.
+                        </p>
+                        <p>
+                            My passion for continuous improvement has led me to develop innovative project management 
+                            tools and templates that streamline processes and enhance team productivity. I firmly believe that effective communication 
+                            and stakeholder engagement are the foundation of successful projects.
+                        </p>
+                        
+                        
+                        <!-- Professional Skills for About Section -->
+                        <h4 class="text-center mt-4 mb-3">Professional Skills</h4>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Agile & Hybrid Methodologies
+                                    </li>
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Risk & Compliance Management
+                                    </li>
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Vendor & Contract Management
+                                    </li>
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Financial Oversight
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Strategic Planning
+                                    </li>
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Team Mentoring
+                                    </li>
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Process Improvement
+                                    </li>
+                                    <li class="list-group-item border-0 ps-0">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Cross-Functional Leadership
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certifications Section -->
+            <section id="certifications">
+            <div class="mt-4 pt-4">
+                <div class="section-title">
+                    <h2>Certifications</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Project Management Professional (PMP)</h3>
+                                <p class="card-text">Globally recognized certification demonstrating expertise in leading and directing projects.</p>
+                                <div class="cert-meta">
+                                    <span>Project Management Institute</span>
+                                    <span>Exp. 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">PMI-Agile Certified Practitioner (PMI-ACP)</h3>
+                                <p class="card-text">Advanced certification in agile principles, practices, tools, and techniques across multiple methodologies.</p>
+                                <div class="cert-meta">
+                                    <span>Project Management Institute</span>
+                                    <span>Exp. 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">AWS Cloud Quest: Cloud Practitioner</h3>
+                                <p class="card-text">Foundational understanding of AWS Cloud services, security, architecture, pricing, and support.</p>
+                                <div class="cert-meta">
+                                    <span>Amazon Web Services</span>
+                                    <span>Current</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Microsoft Azure Fundamentals</h3>
+                                <p class="card-text">Validated knowledge of cloud concepts, Azure services, workloads, security, and governance.</p>
+                                <div class="cert-meta">
+                                    <span>Microsoft</span>
+                                    <span>Current</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Google Cloud Digital Leader</h3>
+                                <p class="card-text">Demonstrated ability to drive digital transformation through cloud technology and business value.</p>
+                                <div class="cert-meta">
+                                    <span>Google Cloud</span>
+                                    <span>Exp. 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Data Engineering Essentials</h3>
+                                <p class="card-text">Foundational knowledge of the core concepts, ecosystem, and life cycle of data engineering.</p>
+                                <div class="cert-meta">
+                                    <span>IBM</span>
+                                    <span>Current</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Understanding Customer Needs</h3>
+                                <p class="card-text">Strategic approaches to identifying and fulfilling customer requirements for business value creation.</p>
+                                <div class="cert-meta">
+                                    <span>Wharton School - UPenn</span>
+                                    <span>Issued 2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Computational Thinking</h3>
+                                <p class="card-text">Skills in breaking down complex problems using structured computational thinking frameworks.</p>
+                                <div class="cert-meta">
+                                    <span>Coursera</span>
+                                    <span>Current</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="certification-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Interpersonal Dynamics Experience</h3>
+                                <p class="card-text">Advanced leadership techniques focusing on interpersonal effectiveness in executive settings.</p>
+                                <div class="cert-meta">
+                                    <span>UC Berkeley Executive Education</span>
+                                    <span>Current</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Credly Badge Link (Optional) -->
+                <div class="text-center mt-4 mb-4 pb-4">
+                    <a href="https://www.credly.com/users/erika-pazos" target="_blank" class="btn btn-highlight">
+                        <i class="bi bi-award me-2"></i>View Verified Digital Badges
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Advanced Capabilities) - Reorganized into three categories -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expertise Areas</h2>
+            </div>
+            <div class="row mb-4">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="lead">
+                        My expertise spans multiple disciplines and technologies, enabling me to deliver comprehensive solutions
+                        to complex business challenges.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Program Management -->
+            <h3 class="text-center text-light mb-4">Program Management</h3>
+            <div class="row mb-5">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-kanban"></i>
+                        <h3>Project Management</h3>
+                        <p>Expert in both Agile and Waterfall methodologies, with a track record of successful project delivery.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-calendar-check"></i>
+                        <h3>Resource Planning</h3>
+                        <p>Skilled in optimizing resource allocation to maximize efficiency and project outcomes.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-shield-check"></i>
+                        <h3>Risk Management</h3>
+                        <p>Expert in identifying, assessing, and mitigating project risks to ensure smooth delivery.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-currency-dollar"></i>
+                        <h3>Budget Management</h3>
+                        <p>Proven track record of managing project budgets with precision and accountability.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Expertise -->
+            <h3 class="text-center text-light mb-4">Technical Expertise</h3>
+            <div class="row mb-5">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-bar-chart"></i>
+                        <h3>Data Analysis</h3>
+                        <p>Proficient in analyzing project data to extract insights and drive informed decision-making.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-laptop"></i>
+                        <h3>Cloud Technologies</h3>
+                        <p>Experienced with AWS, Azure, and Google Cloud platforms for implementing scalable solutions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <h3>Process Improvement</h3>
+                        <p>Dedicated to continuous improvement through process optimization and innovation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Leadership & Strategy -->
+            <h3 class="text-center text-light mb-4">Leadership & Strategy</h3>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-people"></i>
+                        <h3>Team Leadership</h3>
+                        <p>Skilled at building and leading high-performing teams through clear communication and motivation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-chat-dots"></i>
+                        <h3>Stakeholder Management</h3>
+                        <p>Experienced in managing stakeholder expectations and ensuring alignment throughout projects.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="skill-card">
+                        <i class="bi bi-lightbulb"></i>
+                        <h3>Strategic Planning</h3>
+                        <p>Adept at developing long-term strategies and roadmaps that align with organizational objectives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Project Portfolio</h2>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 mx-auto text-center">
+                  <p class="lead mb-4" style="color: #666; font-size: 1.1rem; line-height: 1.6;">
+                      Below are some of the successful projects I have managed throughout my career. 
+                      These represent a selection of key initiatives that demonstrate my expertise in 
+                      program management, process improvement, and delivering measurable business value.
+                  </p>
+             
+          </div>
+      </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="portfolio-item">
+                        
+                        <div class="portfolio-item-content">
+                            <h3 class="portfolio-item-title">Data Center Consolidation Program</h3>
+                            <div class="mb-3">
+                                <span class="portfolio-tag">Program Management</span>
+                                <span class="portfolio-tag">Waterfall</span>
+                                <span class="portfolio-tag">Cost Optimization</span>
+                            </div>
+                            <p>
+                                Led a complex data center consolidation initiative that resulted in significant 
+                                operational efficiencies and cost savings for a major insurance provider.
+                            </p>
+                            <ul class="mb-4">
+                                <li>Achieved $240K in annual cost savings by reducing hardware, software licensing, and facility expenses through 
+                                    consolidation and virtualization efforts.</li>
+                                <li>Completed migration of 200+ critical systems across multiple business units, utilizing a phased approach and 
+                                    comprehensive dependency mapping to ensure seamless transitions..</li>
+                                <li>Maintained zero service disruptions during the migration by implementing high-availability configurations, 
+                                    conducting thorough testing, and executing a well-planned cutover strategy.</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="portfolio-item">
+                       
+                        <div class="portfolio-item-content">
+                            <h3 class="portfolio-item-title">Digital Transformation Initiative</h3>
+                            <div class="mb-3">
+                                <span class="portfolio-tag">Business</span>
+                                <span class="portfolio-tag">Agile</span>
+                                <span class="portfolio-tag">Cost Optimization</span>
+                                <span class="portfolio-tag">Process Improvement</span>
+                            </div>
+                            <p>
+                                Independently developed and implemented key automation solutions, including automated claims processing, T&M file generation, 
+                                email communications, and a comprehensive PM tracking dashboard. These initiatives streamlined legacy processes, leading to significant 
+                                operational efficiency gains and cost savings.
+                            </p>
+                            <ul class="mb-4">
+                                <li>Achieved a 65% reduction in processing time by eliminating manual data entry and approval bottlenecks.</li>
+                                <li>Saved over 4,000 hours annually by automating routine documentation and reporting tasks.</li>
+                                <li>Enhanced data accuracy by 37% through standardized templates and validation controls.</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="portfolio-item">
+                       
+                        <div class="portfolio-item-content">
+                            <h3 class="portfolio-item-title">Infrastructure Portfolio Management</h3>
+                            <div class="mb-3">
+                                <span class="portfolio-tag">Project Portfolio Management</span>
+                                <span class="portfolio-tag">Leadership</span>
+                                <span class="portfolio-tag">Cross-Functional Collaboration</span>
+                                <span class="portfolio-tag">Financial Oversight</span>
+                                <span class="portfolio-tag">Process Standardization</span>
+                            </div>
+                            <p>
+                                Managed a diverse portfolio of over 100+ active projects with TCV of $2M+ globally across multiple disciplines. 
+                                Led a team of 9 project managers and more than 25 system administrators, ensuring cohesive collaboration across engineering, finance, 
+                                procurement, and compliance departments. Oversaw financial tracking, vendor contracts, and delivery risks to guarantee projects were 
+                                completed on time and within budget.
+                            </p>
+                            <ul class="mb-4">
+                                <li>Implemented standardized project management methodologies, resulting in an 18% improvement in project delivery rates. Standardization 
+                                    facilitated consistent processes, reduced learning curves, and enhanced overall efficiency.</li>
+                                <li>Implemented resource tracking system that increased utilization efficiency by 20%.</li>
+                                <li>Developed a comprehensive onboarding program for new project managers, accelerating their integration and productivity. The program included structured training, 
+                                    mentorship, and clear documentation, reducing the time to full productivity.</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="portfolio-item">
+                        
+                        <div class="portfolio-item-content">
+                            <h3 class="portfolio-item-title">Executive Reporting & Client Management</h3>
+                            <div class="mb-3">
+                                <span class="portfolio-tag">Executive Reporting</span>
+                                <span class="portfolio-tag">Client Relationship Management</span>
+                                <span class="portfolio-tag">Strategic Communication</span>
+                                <span class="portfolio-tag">Risk Mitigation</span>
+                            </div>
+                            <p>
+                                Designed and maintained comprehensive executive dashboards that provided senior leadership with real-time insights into key business metrics, 
+                                including cost, revenue, gross profit, issues, risks, and overall project status. These dashboards facilitated quicker, data-driven decision-making 
+                                by consolidating critical information into an accessible format. Conducted quarterly business reviews (QBRs) with client leadership, fostering transparency and trust. 
+                                These sessions not only highlighted project progress but also identified areas for process improvement and cost optimization, leading to the implementation of strategic 
+                                changes that enhanced overall efficiency.
+                            </p>
+                            <ul class="mb-4">
+                                <li>Strengthened client relationships through proactive communication and reporting.</li>
+                                <li>Maintained consistently high customer satisfaction scores throughout engagement.</li>
+                                <li>Contributed to the development of best practices in program and project management.</li>
+                                
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4">
+                    <div class="contact-card">
+                        <i class="bi bi-envelope"></i>
+                        <h3>Email</h3>
+                        <p>contact@erikapazos.com</p>
+                        <a href="mailto:contact@erikapazos.com" class="btn btn-outline-primary mt-3">Send Email</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card">
+                        <i class="bi bi-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me on LinkedIn</p>
+                        <a href="https://linkedin.com/in/erika-pazos" target="_blank" class="btn btn-outline-primary mt-3">View Profile</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <h3 class="mb-4">Send Me a Message</h3>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/erika-pazos" target="_blank" ><i class="bi bi-linkedin"></i></a>
+                <a href="https://github.com/ecpazos" target="_blank" ><i class="bi bi-github"></i></a>
+            </div>
+            <p>&copy; 2025 Erika Pazos Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Change nav background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(17, 45, 78, 0.95)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'var(--dark-color)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+        
+        // Update active nav link based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+    <!-- First, add these modal HTML structures at the end of your body tag, before the closing </body> tag -->
+
+
+  
+  <!-- Now let's add the JavaScript to connect the buttons to the modals -->
+  <script>
+    // Wait for the document to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update the "View Case Study" buttons in your portfolio section to trigger the modals
+      
+      // First, find all the portfolio items
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      
+      // Loop through the portfolio items and update the buttons
+      if (portfolioItems.length >= 4) {
+        // Data Center Consolidation Program (first portfolio item)
+        const dataCenterBtn = portfolioItems[0].querySelector('.btn-outline-primary');
+        if (dataCenterBtn) {
+          dataCenterBtn.setAttribute('data-bs-toggle', 'modal');
+          dataCenterBtn.setAttribute('data-bs-target', '#dataCenterModal');
+          dataCenterBtn.href = 'javascript:void(0);';
+        }
+        
+        // Digital Transformation Initiative (second portfolio item)
+        const digitalTransformationBtn = portfolioItems[1].querySelector('.btn-outline-primary');
+        if (digitalTransformationBtn) {
+          digitalTransformationBtn.setAttribute('data-bs-toggle', 'modal');
+          digitalTransformationBtn.setAttribute('data-bs-target', '#digitalTransformationModal');
+          digitalTransformationBtn.href = 'javascript:void(0);';
+        }
+        
+        // Infrastructure Portfolio Management (third portfolio item)
+        const infrastructureBtn = portfolioItems[2].querySelector('.btn-outline-primary');
+        if (infrastructureBtn) {
+          infrastructureBtn.setAttribute('data-bs-toggle', 'modal');
+          infrastructureBtn.setAttribute('data-bs-target', '#infrastructurePortfolioModal');
+          infrastructureBtn.href = 'javascript:void(0);';
+        }
+        
+        // Executive Reporting (fourth portfolio item)
+        const executiveReportingBtn = portfolioItems[3].querySelector('.btn-outline-primary');
+        if (executiveReportingBtn) {
+          executiveReportingBtn.setAttribute('data-bs-toggle', 'modal');
+          executiveReportingBtn.setAttribute('data-bs-target', '#executiveReportingModal');
+          executiveReportingBtn.href = 'javascript:void(0);';
+        }
+      }
+    });
+  </script>
+<!-- Data Center Consolidation Program Modal -->
+<div class="modal fade" id="dataCenterModal" tabindex="-1" aria-labelledby="dataCenterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--primary-color); color: white;">
+          <h5 class="modal-title" id="dataCenterModalLabel">Data Center Consolidation Program</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <!-- Overview Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Overview</h3>
+                <p>Led a strategic data center consolidation initiative for a major insurance provider, successfully migrating 200+ critical systems while maintaining zero service disruptions and achieving significant cost reductions.</p>
+              </div>
+            </div>
+            
+            <!-- Challenge Section -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <h3 class="mb-3" style="color: var(--secondary-color);">Challenge</h3>
+              <p>The client operated multiple legacy data centers across different geographical locations, resulting in:</p>
+              <ul>
+                <li>Redundant infrastructure and excessive operational costs</li>
+                <li>Inconsistent maintenance and security practices</li>
+                <li>Inefficient resource utilization with low server density</li>
+                <li>Complex compliance management across multiple facilities</li>
+                <li>High energy consumption and carbon footprint</li>
+              </ul>
+            </div>
+          </div>
+            
+            <!-- Approach Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Approach</h3>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Assessment & Planning</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                        <li>Conducted comprehensive inventory of all hardware, software, and applications</li>
+                        <li>Developed dependency mapping to identify critical system relationships</li>
+                        <li>Created risk assessment matrix with mitigation strategies</li>
+                        <li>Designed phased migration approach to minimize business disruption</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Stakeholder Engagement</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                        <li>Established clear communication channels with business unit leaders</li>
+                        <li>Conducted regular briefings with executive stakeholders</li>
+                        <li>Implemented transparent progress tracking dashboards</li>
+                        <li>Created dedicated escalation paths for critical issues</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Technical Implementation</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                        <li>Deployed virtualization technologies to increase server density</li>
+                        <li>Implemented high-availability configurations for mission-critical systems</li>
+                        <li>Established comprehensive testing protocols for each migration phase</li>
+                        <li>Created detailed rollback procedures for contingency planning</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Governance & Compliance</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                        <li>Developed migration governance framework with clear approval gates</li>
+                        <li>Maintained compliance documentation throughout the transition</li>
+                        <li>Conducted security assessments at each migration phase</li>
+                        <li>Established post-migration audit procedures</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Results Section -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <h3 class="mb-4" style="color: var(--secondary-color);">Results</h3>
+              
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                    <div class="card-body">
+                      <h4 class="card-title">Financial Impact</h4>
+                      <ul>
+                        <li><strong>$240,000</strong> annual cost savings through reduced hardware, software licensing, and facility expenses, broken down as:</li>
+                        <ul>
+                          <li>$96,000 in reduced hardware expenses</li>
+                          <li>$84,000 in software licensing optimization</li>
+                          <li>$60,000 in facility cost reductions</li>
+                        </ul>
+                        <li><strong>30%</strong> reduction in energy consumption, equivalent to <strong>$45,000</strong> annually</li>
+                        <li><strong>25%</strong> decrease in operational overhead (<strong>$110,000</strong> annual savings)</li>
+                        <li>Consolidation of <strong>24</strong> vendor contracts to <strong>8</strong>, resulting in streamlined management and improved service levels</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                    <div class="card-body">
+                      <h4 class="card-title">Operational Improvements</h4>
+                      <ul>
+                        <li>Increased server utilization from <strong>30%</strong> to <strong>76%</strong></li>
+                        <li>Reduced backup window from <strong>12 hours</strong> to <strong>4 hours</strong></li>
+                        <li>Decreased average incident resolution time by <strong>40%</strong></li>
+                        <li>Improved disaster recovery capabilities with <strong>45%</strong> faster recovery time</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-12 mb-4">
+                  <div class="card" style="border-top: 4px solid var(--highlight-color);">
+                    <div class="card-body">
+                      <h4 class="card-title">Business Value</h4>
+                      <ul>
+                        <li>Enhanced security posture with centralized monitoring</li>
+                        <li>Zero service disruptions during migration process</li>
+                        <li>Streamlined compliance management across all systems</li>
+                        <li>Improved reliability with <strong>99.99%</strong> uptime achievement</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Key Success Factors -->
+          <div class="row">
+            <div class="col-12">
+              <h3 class="mb-3" style="color: var(--secondary-color);">Key Success Factors</h3>
+              <div class="card">
+                <div class="card-body">
+                  <ul class="mb-0">
+                    <li>Meticulous dependency mapping prior to migration planning</li>
+                    <li>Phased approach with thorough testing at each stage</li>
+                    <li>Strong executive sponsorship and stakeholder alignment</li>
+                    <li>Comprehensive communication strategy across all business units</li>
+                    <li>Detailed contingency planning with clear rollback procedures</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+             
+  
+  <!-- Digital Transformation Initiative Modal -->
+  <div class="modal fade" id="digitalTransformationModal" tabindex="-1" aria-labelledby="digitalTransformationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--primary-color); color: white;">
+          <h5 class="modal-title" id="digitalTransformationModalLabel">Digital Transformation Initiative</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <!-- Overview Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Overview</h3>
+                <p>Independently developed and implemented key automation solutions to streamline legacy processes for a healthcare provider, resulting in significant efficiency gains, cost savings, and enhanced data accuracy.</p>
+              </div>
+            </div>
+            
+            <!-- Challenge Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Challenge</h3>
+                <p>The client was struggling with:</p>
+                <ul>
+                  <li>Manual, paper-based processes that were error-prone and time-consuming</li>
+                  <li>Inconsistent documentation practices across departments</li>
+                  <li>Limited visibility into process performance metrics</li>
+                  <li>Significant resource allocation to routine administrative tasks</li>
+                  <li>Delayed reporting and decision-making due to manual data compilation</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Approach Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Approach</h3>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Process Analysis</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Conducted detailed workflow mapping of existing processes</li>
+                      <li>Identified high-volume, repeatable activities for automation</li>
+                      <li>Quantified time and resource consumption of manual processes</li>
+                      <li>Analyzed error patterns and root causes in current workflows</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Solution Design</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Developed automated claims processing system with custom validation rules</li>
+                      <li>Created standardized templates for consistent documentation</li>
+                      <li>Designed automated T&M file generation system with error detection</li>
+                      <li>Built email communication automation with tracking capabilities</li>
+                      <li>Implemented comprehensive PM tracking dashboard for real-time visibility</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Implementation Strategy</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Utilized phased deployment approach to minimize disruption</li>
+                      <li>Conducted targeted user training sessions for each solution</li>
+                      <li>Established measurement framework to track performance improvements</li>
+                      <li>Created feedback mechanisms for continuous refinement</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Change Management</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Engaged key stakeholders in solution design and validation</li>
+                      <li>Developed comprehensive training materials and user guides</li>
+                      <li>Implemented "super user" program for peer-to-peer support</li>
+                      <li>Established clear communication on benefits and timeline</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-4" style="color: var(--secondary-color);">Results</h3>
+                
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                      <div class="card-body">
+                        <h4 class="card-title">Efficiency Gains</h4>
+                        <ul>
+                          <li><strong>65%</strong> reduction in processing time by eliminating manual data entry and approval bottlenecks</li>
+                          <li><strong>4,000+</strong> hours annually saved through automation of routine documentation and reporting tasks</li>
+                          <li><strong>37%</strong> enhancement in data accuracy through standardized templates and validation controls</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                      <div class="card-body">
+                        <h4 class="card-title">Quality Improvements</h4>
+                        <ul>
+                          <li><strong>37%</strong> enhancement in data accuracy (error rate reduced from 8.5% to 5.5%)</li>
+                          <li><strong>85%</strong> reduction in processing errors (from average 20 errors per week to 3)</li>
+                          <li><strong>100%</strong> compliance with documentation requirements (up from 82%)</li>
+                          <li><strong>60%</strong> decrease in rework (from 25 instances per month to 10 instances)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-12 mb-4">
+                    <div class="card" style="border-top: 4px solid var(--highlight-color);">
+                      <div class="card-body">
+                        <h4 class="card-title">Business Impact</h4>
+                          <li><strong>25%</strong> increase in staff productivity (processing 25% more claims with same headcount)</li>
+                          <li><strong>40%</strong> reduction in processing backlogs (from 250 pending claims to 150)</li>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Implementation Highlights -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Implementation Highlights</h3>
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <ul>
+                      <li><strong>Claims Automation System</strong>: Reduced average processing time from 25 minutes to 10 minutes per claim (60% improvement)</li>
+                      <li><strong>T&M File Generator</strong>:  Achieved 37% improvement in data accuracy and eliminated most manual data entry errors</li>
+                      <li><strong>Email Communications System</strong>: Standardized customer communications with 99.8% delivery tracking</li>
+                      <li><strong>PM Dashboard</strong>: Reduced time spent gathering status updates from 15 hours to 2 hours weekly (87% reduction)- contributing to the 4,000+ annual hours saved</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Key Success Factors -->
+            <div class="row">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Key Success Factors</h3>
+                <div class="card">
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Focus on user experience and intuitive design</li>
+                      <li>Thorough testing with real-world scenarios</li>
+                      <li>Comprehensive training program for all affected staff</li>
+                      <li>Iterative refinement based on user feedback</li>
+                      <li>Clear metrics to demonstrate value and ROI</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Infrastructure Portfolio Management Modal -->
+  <div class="modal fade" id="infrastructurePortfolioModal" tabindex="-1" aria-labelledby="infrastructurePortfolioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--primary-color); color: white;">
+          <h5 class="modal-title" id="infrastructurePortfolioModalLabel">Infrastructure Portfolio Management</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <!-- Overview Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Overview</h3>
+                <p>Successfully managed a diverse portfolio of 100+ active projects with a total contract value exceeding $2M globally, leading a team of 9 project managers and 25+ system administrators while ensuring consistent delivery excellence.</p>
+              </div>
+            </div>
+            
+            <!-- Challenge Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Challenge</h3>
+                <p>The client organization faced multiple portfolio management challenges:</p>
+                <ul>
+                  <li>Inconsistent project management methodologies across teams</li>
+                  <li>Resource allocation inefficiencies and utilization issues</li>
+                  <li>Limited visibility into project interdependencies</li>
+                  <li>Insufficient standardization in reporting and governance</li>
+                  <li>Multiple competing priorities with constrained resources</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Approach Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Approach</h3>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Portfolio Governance</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Established standardized project management methodology</li>
+                      <li>Implemented stage-gate approval process for all projects</li>
+                      <li>Created portfolio prioritization framework aligned with business objectives</li>
+                      <li>Developed consistent risk assessment and escalation procedures</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Resource Management</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Designed comprehensive resource tracking system</li>
+                      <li>Implemented capacity planning framework with forecasting capability</li>
+                      <li>Created skills inventory and development roadmap</li>
+                      <li>Established resource allocation optimization process</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Financial Management</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Implemented consistent budget tracking across all projects</li>
+                      <li>Developed financial forecasting models</li>
+                      <li>Created standardized vendor contract management procedures</li>
+                      <li>Established cost variance analysis and reporting</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Team Development</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Created comprehensive onboarding program for project managers</li>
+                      <li>Established mentorship pairings for knowledge transfer</li>
+                      <li>Implemented continuous improvement feedback mechanisms</li>
+                      <li>Developed career progression framework for team members</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-4" style="color: var(--secondary-color);">Results</h3>
+                
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                      <div class="card-body">
+                        <h4 class="card-title">Portfolio Performance</h4>
+                        <ul>
+                          <li><strong>18%</strong> improvement in project delivery rates through standardized project management methodologies</li>
+                          <li><strong>20%</strong> increase in resource utilization efficiency through implementation of a comprehensive tracking system</li>
+                          <li>Developed a comprehensive onboarding program for new project managers, accelerating integration and productivity through structured training, mentorship, and clear documentation</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                      <div class="card-body">
+                        <h4 class="card-title">Resource Optimization</h4>
+                        <ul>
+                          <li><strong>20%</strong> increase in resource utilization efficiency:</li>
+                          <ul>
+                            <li>Average billable utilization increased from 65% to 78%</li>
+                            <li>Bench time reduced by 32% (from 22% to 15%)</li>
+                          </ul>
+                          
+                          <li><strong>60%</strong> improvement in capacity planning accuracy (variance reduced from 25% to 10%)</li>
+                          <li><strong>35%</strong> decrease in overtime requirements (from 480 hours per month to 312 hours)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                      <div class="card-body">
+                        <h4 class="card-title">Team Development</h4>
+                        <ul>
+                          <li>Reduced new project manager onboarding time from 12 weeks to 5 weeks (58% reduction)</li>
+                          <li><strong>40%</strong> increase in cross-functional knowledge sharing (measured through skills certification completions)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Key Success Factors -->
+            <div class="row">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Key Success Factors</h3>
+                <div class="card">
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Consistent application of standardized methodologies</li>
+                      <li>Clear alignment between portfolio and strategic objectives</li>
+                      <li>Robust resource management and capacity planning</li>
+                      <li>Comprehensive performance metrics and dashboards</li>
+                      <li>Investment in team development and knowledge sharing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Executive Reporting Modal -->
+  <div class="modal fade" id="executiveReportingModal" tabindex="-1" aria-labelledby="executiveReportingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--primary-color); color: white;">
+          <h5 class="modal-title" id="executiveReportingModalLabel">Executive Reporting & Client Management</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <!-- Overview Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Overview</h3>
+                <p>Designed and maintained comprehensive executive dashboards and conducted strategic quarterly business reviews that enhanced decision-making capabilities, fostered client trust, and identified opportunities for process improvement and cost optimization.</p>
+              </div>
+            </div>
+            
+            <!-- Challenge Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Challenge</h3>
+                <p>The organization struggled with:</p>
+                <ul>
+                  <li>Fragmented reporting processes across different business units</li>
+                  <li>Limited visibility into key performance indicators</li>
+                  <li>Inconsistent stakeholder communication</li>
+                  <li>Time-consuming manual data collection for executive meetings</li>
+                  <li>Reactive rather than proactive issue identification</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Approach Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <h3 class="mb-3" style="color: var(--secondary-color);">Approach</h3>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Dashboard Development</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Identified critical business metrics for executive visibility</li>
+                      <li>Designed intuitive visual dashboard with drill-down capabilities</li>
+                      <li>Implemented automated data collection and validation</li>
+                      <li>Created role-based views for different stakeholder groups</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Quarterly Business Reviews</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="mb-0">
+                      <li>Established standardized QBR format and cadence</li>
+                      <li>Developed data-driven discussion framework</li>
+                      <li>Implemented forward-looking trend analysis</li>
+                      <li>Created strategic recommendation process</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="card mb-3">
+                  <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                    <h5 class="mb-0">Client Relationship Management</h5>
+                </div>
+                <div class="card-body">
+                  <ul class="mb-0">
+                    <li>Established regular touchpoints with key stakeholders</li>
+                    <li>Developed proactive communication protocol for issues</li>
+                    <li>Created feedback collection and implementation process</li>
+                    <li>Implemented relationship health metrics</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card mb-3"></div>
+                <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                  <h5 class="mb-0">Continuous Improvement</h5>
+                </div>
+                <div class="card-body">
+                  <ul class="mb-0">
+                    <li>Established process for capturing improvement opportunities</li>
+                    <li>Created cost optimization identification framework</li>
+                    <li>Implemented ROI tracking for improvement initiatives</li>
+                    <li>Developed knowledge sharing process for lessons learned</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Results Section -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <h3 class="mb-4" style="color: var(--secondary-color);">Results</h3>
+              
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100" style="border-top: 4px solid var(--highlight-color);">
+                    <div class="card-body">
+                      <h4 class="card-title">Client Relationship Enhancement</h4>
+                      <ul>
+                        <li>Strengthened client relationships through proactive communication and reporting</li>
+                        <li>Maintained consistently high customer satisfaction scores throughout engagement</li>
+                        <li>Contributed to the development of best practices in program and project managemen</li>
+                        <li>Built trust through transparent reporting and timely issue resolution</li>
+                        <li>Created strategic partnerships rather than transactional relationships</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- Dashboard Components -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <h3 class="mb-3" style="color: var(--secondary-color);">Dashboard Components</h3>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                      <h5 class="mb-0">Financial Performance</h5>
+                    </div>
+                    <div class="card-body">
+                      <ul class="mb-0">
+                        <li>Budget vs. actual tracking</li>
+                        <li>Revenue and gross profit trends</li>
+                        <li>Cost optimization metrics</li>
+                        <li>Forecast accuracy indicators</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                      <h5 class="mb-0">Project Health</h5>
+                    </div>
+                    <div class="card-body">
+                      <ul class="mb-0">
+                        <li>Milestone completion status</li>
+                        <li>Risk and issue tracking</li>
+                        <li>Schedule variance analysis</li>
+                        <li>Resource utilization metrics</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                      <h5 class="mb-0">Operational Excellence</h5>
+                    </div>
+                    <div class="card-body">
+                      <ul class="mb-0">
+                        <li>Quality metrics and trends</li>
+                        <li>Process efficiency indicators</li>
+                        <li>SLA compliance tracking</li>
+                        <li>Continuous improvement progress</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-header" style="background-color: rgba(63, 114, 175, 0.1);">
+                      <h5 class="mb-0">Strategic Alignment</h5>
+                    </div>
+                    <div class="card-body">
+                      <ul class="mb-0">
+                        <li>Business objective linkage</li>
+                        <li>Strategic initiative status</li>
+                        <li>Innovation pipeline metrics</li>
+                        <li>Market positioning indicators</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Key Success Factors -->
+          <div class="row">
+            <div class="col-12">
+              <h3 class="mb-3" style="color: var(--secondary-color);">Key Success Factors</h3>
+              <div class="card">
+                <div class="card-body">
+                  <ul class="mb-0">
+                    <li>Executive sponsorship and engagement</li>
+                    <li>Consistent and reliable data collection processes</li>
+                    <li>Forward-looking analytics rather than just historical reporting</li>
+                    <li>Regular cadence of meaningful business reviews</li>
+                    <li>Actionable insights rather than just data presentation</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+                
+              
+</body>
+</html>
