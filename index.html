@@ -167,7 +167,7 @@
         .about-img {
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transform: rotate(-2deg);
+            trans: rotate(-2deg);
         }
         
         .about-text {
@@ -181,13 +181,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: trans 0.3s, box-shadow 0.3s;
             height: 100%;
             border-top: 4px solid var(--primary-color);
         }
         
         .certification-card:hover {
-            transform: translateY(-5px);
+            trans: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
@@ -217,13 +217,13 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: trans 0.3s, box-shadow 0.3s;
     background-color: white;
     border-top: 4px solid var(--primary-color);
 }
 
 .portfolio-item:hover {
-    transform: translateY(-5px);
+    trans: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -301,12 +301,12 @@
             border-radius: 10px;
             padding: 25px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: trans 0.3s;
             height: 100%;
         }
         
         .skill-card:hover {
-            transform: translateY(-5px);
+            trans: translateY(-5px);
             background-color: rgba(255, 255, 255, 0.15);
         }
         
@@ -412,7 +412,7 @@
         .social-icons a:hover {
             background-color: var(--highlight-color);
             color: var(--dark-color);
-            transform: translateY(-3px);
+            trans: translateY(-3px);
         }
 
         /* Reduced margin for badge button */
@@ -475,11 +475,11 @@
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: trans 0.3s, box-shadow 0.3s;
         }
         
         .template-card:hover {
-            transform: translateY(-5px);
+            trans: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
@@ -575,13 +575,13 @@
         /* Animation styles */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            trans: translateY(30px);
+            transition: opacity 0.6s ease-out, trans 0.6s ease-out;
         }
         
         .animate-on-scroll.animated {
             opacity: 1;
-            transform: translateY(0);
+            trans: translateY(0);
         }
         
         /* Responsive adjustments */
@@ -1126,8 +1126,8 @@
                     <div class="contact-card">
                         <i class="bi bi-envelope"></i>
                         <h3>Email</h3>
-                        <p>contact@erikapazos.com</p>
-                        <a href="mailto:contact@erikapazos.com" class="btn btn-outline-primary mt-3">Send Email</a>
+                        <p>ecpazos@gmail.com</p>
+                        <a href="mailto:ecpazos@gmail.com" class="btn btn-outline-primary mt-3">Send Email</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -1150,6 +1150,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">Name</label>
+                                        <input type="hidden" name="_next" value="https://erikapazos.com/thank-you.html">
                                         <input type="text" class="form-control" id="name" name ="name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -1168,8 +1169,8 @@
                               <!-- Spam protection (invisible to users) -->
                                 <input type="text" name="_gotcha" style="display:none">
 
-                    <!-- Success message redirect (optional) -->
-  <input type="hidden" name="_next" value="https://erikapazos.com/thank-you.html">
+                    
+  
                                 <button type="submit" class="btn btn-primary">Send Message</button>
                             </form>
                         </div>
